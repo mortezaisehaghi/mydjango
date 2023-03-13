@@ -25,11 +25,19 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Build and push doker image
-      uses: mr-smithers-excellent/docker-build-push@v4 
+    - uses: mr-smithers-excellent/docker-build-push@v6
+      name: Build & push Docker image
       with:
-        image: 2142420664/test
-        registry: docker.io
+        image: repo/image
+        tags: v1, latest
+        registry: registry-url.io
+        dockerfile: Dockerfile.ci
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        
+    # - name: Build and push doker image
+    #   uses: mr-smithers-excellent/docker-build-push@v4 
+    #   with:
+    #     image: 2142420664/test
+    #     registry: docker.io
+    #     username: ${{ secrets.DOCKER_USERNAME }}
+    #     password: ${{ secrets.DOCKER_PASSWORD }}
