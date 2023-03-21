@@ -1,6 +1,11 @@
 name: Django CI
 
 on:
+  workflow_dispatch:
+    inputs:
+      msg:
+        description: 'Message to show'
+        default: 'This workflow run is triggered by workflow_dispatch event'
   push:
     branches: [ "main" ]
   pull_request:
